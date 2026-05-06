@@ -1,0 +1,39 @@
+{
+  "name": "digital-memory-vault",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js",
+    "mongodb": "\"C:\\Program Files\\MongoDB\\Server\\8.0\\bin\\mongod.exe\" --dbpath=C:\\data\\db"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rabiamuhammadsaleem/digital-memory-vault.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/rabiamuhammadsaleem/digital-memory-vault/issues"
+  },
+  "homepage": "https://github.com/rabiamuhammadsaleem/digital-memory-vault#readme",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cloudinary": "^1.41.3",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "express-validator": "^7.3.2",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.6.1",
+    "multer": "^2.1.1",
+    "multer-storage-cloudinary": "^4.0.0",
+    "nodemailer": "^8.0.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}

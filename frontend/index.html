@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Memory Vault | Time Capsule</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">⏰</span>
+                <span class="logo-text">Time Capsule</span>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <button class="nav-btn" onclick="showDashboard()">Dashboard</button>
+                <button class="nav-btn" onclick="showCreateCapsule()">Create</button>
+                <button class="nav-btn" onclick="showMyVault()">My Vault</button>
+                <button class="nav-btn" onclick="showProfile()">Profile</button>
+                <button class="nav-btn logout-btn" onclick="logout()">Logout</button>
+            </div>
+            <div class="auth-buttons" id="authButtons">
+                <button class="btn btn-outline" onclick="showLogin()">Login</button>
+                <button class="btn btn-primary" onclick="showSignup()">Sign Up</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="mainContent">
+        <!-- Login Page -->
+         <div id="loginPage" class="page">
+    <div class="container">
+        <div class="auth-card">
+            <h2>Welcome Back! 👋</h2>
+            <p>Login to access your time capsules</p>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label>📧 Email Address</label>
+                    <div class="auth-input-icon">
+                        <span class="input-icon">📧</span>
+                        <input type="email" id="loginEmail" placeholder="Enter your email" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>🔒 Password</label>
+                    <div class="auth-input-icon">
+                        <span class="input-icon">🔒</span>
+                        <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                    </div>
+                </div>
+                <div class="auth-options">
+                    <label>
+                        <input type="checkbox" id="rememberMe"> Remember me
+                    </label>
+                    <a href="#">Forgot Password?</a>
+                </div>
+                <button type="submit" class="btn btn-primary">Login →</button>
+            </form>
+            <div class="auth-footer">
+                Don't have an account? <a href="#" onclick="showSignup()">Sign Up</a>
+            </div>
+        </div>
+    </div>
+</div>
+      
+        <!-- Signup Page -->
+         <div id="signupPage" class="page">
+    <div class="container">
+        <div class="auth-card">
+            <h2>Create Account 📝</h2>
+            <p>Start preserving your memories today!</p>
+            <form id="signupForm">
+                <div class="form-group">
+                    <label>👤 Full Name</label>
+                    <div class="auth-input-icon">
+                        <span class="input-icon">👤</span>
+                        <input type="text" id="signupName" placeholder="Enter your full name" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>📧 Email Address</label>
+                    <div class="auth-input-icon">
+                        <span class="input-icon">📧</span>
+                        <input type="email" id="signupEmail" placeholder="Enter your email" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>🔒 Password</label>
+                    <div class="auth-input-icon">
+                        <span class="input-icon">🔒</span>
+                        <input type="password" id="signupPassword" placeholder="Create a password (min 6 characters)" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Sign Up →</button>
+            </form>
+            <div class="auth-footer">
+                Already have an account? <a href="#" onclick="showLogin()">Login</a>
+            </div>
+        </div>
+    </div>
+</div>
+     
+        <!-- Dashboard Page -->
+        <div id="dashboardPage" class="page">
+            <div class="container">
+                <h1>Dashboard 📊</h1>
+                <div class="stats-grid" id="statsGrid">
+                    <div class="stat-card">
+                        <h3>Total Capsules</h3>
+                        <p class="stat-number" id="totalCapsules">0</p>
+                    </div>
+                    <div class="stat-card locked">
+                        <h3>🔒 Locked</h3>
+                        <p class="stat-number" id="lockedCapsules">0</p>
+                    </div>
+                    <div class="stat-card unlocked">
+                        <h3>🔓 Unlocked</h3>
+                        <p class="stat-number" id="unlockedCapsules">0</p>
+                    </div>
+                    <div class="stat-card streak">
+                        <h3>🔥 Weekly Streak</h3>
+                        <p class="stat-number" id="weeklyStreak">0</p>
+                    </div>
+                </div>
+                <div class="next-capsule" id="nextCapsule">
+                    <h3>⏰ Next Unlocking</h3>
+                    <p id="nextCapsuleInfo">Loading...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Create Capsule Page -->
+<div id="createPage" class="page">
+    <div class="container">
+        <h1>✨Create New Time Capsule✨ </h1>
+        <form id="createCapsuleForm" enctype="multipart/form-data">
+            <div class="form-group">
+                <label>📝 Title</label>
+                <input type="text" id="capsuleTitle" placeholder="Enter a meaningful title..." required>
+            </div>
+
+            <div class="form-group">
+                <label>💭 Message</label>
+                <textarea id="capsuleMessage" placeholder="Write your message to the future..." rows="5" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>📅 Unlock Date</label>
+                <input type="date" id="capsuleUnlockDate" required>
+            </div>
+
+            <div class="form-group">
+                <label>😊 Mood</label>
+                <select id="capsuleMood">
+                    <option value="happy">😊 Happy</option>
+                    <option value="excited">🎉 Excited</option>
+                    <option value="motivated">💪 Motivated</option>
+                    <option value="grateful">🙏 Grateful</option>
+                    <option value="peaceful">😌 Peaceful</option>
+                    <option value="hopeful">🌟 Hopeful</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>🏷️ Tags</label>
+                <input type="text" id="capsuleTags" placeholder="e.g., future, dream, motivation (comma separated)">
+            </div>
+
+            <div class="form-group">
+                <label>🖼️ Image URL</label>
+                <input type="text" id="capsuleImageUrl" placeholder="https://... (optional)">
+            </div>
+
+            <label class="checkbox-label">
+                <input type="checkbox" id="capsuleIsPublic">
+                <span>Make this capsule public</span>
+            </label>
+
+            <button type="submit" class="btn btn-primary">
+                <span>✨</span> Create Capsule <span>🎉</span>
+            </button>
+        </form>
+    </div>
+</div>
+
+        <!-- My Vault Page -->
+        <div id="vaultPage" class="page">
+            <div class="container">
+                <h1>My Vault 📦</h1>
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="🔍 Search by title or tags...">
+                    <select id="statusFilter">
+                        <option value="">All Capsules</option>
+                        <option value="locked">Locked 🔒</option>
+                        <option value="unlocked">Unlocked 🔓</option>
+                    </select>
+                </div>
+                <div id="capsulesList" class="capsules-grid">
+                    <!-- Capsules will appear here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Page -->
+<div id="profilePage" class="page">
+    <div class="container">
+        <h1>👤My Profile</h1>
+        <div class="profile-card">
+            <div class="profile-avatar">
+                <div class="avatar-icon">👤</div>
+            </div>
+            <form id="profileForm">
+                <div class="form-group">
+                    <label>👤 Full Name</label>
+                    <div class="input-icon">
+                        <input type="text" id="profileName" placeholder="Enter your name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>📧 Email Address</label>
+                    <div class="input-icon">
+                        <input type="email" id="profileEmail" placeholder="Enter your email" readonly>
+                    </div>
+                    <small class="password-hint">Email cannot be changed</small>
+                </div>
+                <div class="form-group">
+                    <label>🔒 New Password</label>
+                    <div class="input-icon">
+                        <input type="password" id="profilePassword" placeholder="Enter new password (optional)">
+                    </div>
+                    <small class="password-hint">Leave empty if you don't want to change password</small>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <span>💾</span> Update Profile
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+    <!-- Edit Capsule Modal -->
+<div id="editModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close" onclick="closeEditModal()">&times;</span>
+        <h2>✏️ Edit Capsule</h2>
+        <form id="editCapsuleForm">
+            <input type="hidden" id="editCapsuleId">
+            
+            <label>Title:</label>
+            <input type="text" id="editTitle" placeholder="Title" required>
+            
+            <label>Message:</label>
+            <textarea id="editMessage" placeholder="Message" rows="4" required></textarea>
+            
+            <label>Unlock Date:</label>
+            <input type="date" id="editUnlockDate" required>
+            
+            <label>Mood:</label>
+            <select id="editMood">
+                <option value="happy">😊 Happy</option>
+                <option value="excited">🎉 Excited</option>
+                <option value="motivated">💪 Motivated</option>
+                <option value="grateful">🙏 Grateful</option>
+                <option value="peaceful">😌 Peaceful</option>
+            </select>
+            
+            <label>Tags (comma separated):</label>
+            <input type="text" id="editTags" placeholder="tag1, tag2, tag3">
+            
+            <label>Image URL (optional):</label>
+            <input type="text" id="editImageUrl" placeholder="https://...">
+            
+            <button type="submit" class="btn btn-primary">💾 Save Changes</button>
+            <button type="button" class="btn btn-outline" onclick="closeEditModal()">Cancel</button>
+        </form>
+    </div>
+</div>
+    <!-- Axios CDN -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
