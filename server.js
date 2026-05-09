@@ -69,9 +69,17 @@ app.get(/^\/(?!api).*/, (req, res) => {
 });
 
 // Start server
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
-  console.log(`📱 Frontend available at: http://localhost:${PORT}`);
-  console.log(`🔗 API available at: http://localhost:${PORT}/api`);
-});
+// index.js ke aakhir mein
+if (process.env.NODE_ENV !== 'production') {
+    const PORT = process.env.PORT || 3000;
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+}
+// server.js ke aakhir mein
+module.exports = app;
+// export default app; // Ye line bohat zaroori he Vercel ke liye
+// const PORT = process.env.PORT || 5000;
+// app.listen(PORT, () => {
+//   console.log(`🚀 Server running on port ${PORT}`);
+//   console.log(`📱 Frontend available at: http://localhost:${PORT}`);
+//   console.log(`🔗 API available at: http://localhost:${PORT}/api`);
+// });
