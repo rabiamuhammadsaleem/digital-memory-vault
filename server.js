@@ -68,10 +68,23 @@ app.get(/^\/(?!api).*/, (req, res) => {
     res.sendFile(path.join(__dirname, 'frontend', 'index.html'));
 });
 
-// Start server
+// // Start server
+// const PORT = process.env.PORT || 5000;
+// app.listen(PORT, () => {
+//   console.log(`🚀 Server running on port ${PORT}`);
+//   console.log(`📱 Frontend available at: http://localhost:${PORT}`);
+//   console.log(`🔗 API available at: http://localhost:${PORT}/api`);
+// });
+
+// server.js ka aakhri hissa
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
-  console.log(`📱 Frontend available at: http://localhost:${PORT}`);
-  console.log(`🔗 API available at: http://localhost:${PORT}/api`);
-});
+
+// Sirf local machine par server chalayein
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(PORT, () => {
+        console.log(`🚀 Server running on port ${PORT}`);
+    });
+}
+
+// Vercel ke liye export lazmi hai
+module.exports = app;

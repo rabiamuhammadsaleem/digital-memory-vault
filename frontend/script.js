@@ -208,142 +208,7 @@ async function editCapsule(capsuleId) {
         alert('Failed to load capsule: ' + (error.response?.data?.message || error.message));
     }
 }
-// async function editCapsule(capsuleId) {
-//     try {
-//         const response = await api.get(`/capsules/${capsuleId}`);
-        
-//         if (response.success && response.data.status === 'unlocked') {
-//             alert('❌ Cannot edit an unlocked capsule!');
-//             return;
-//         }
-        
-//         if (response.success) {
-//             const capsule = response.data;
-//             document.getElementById('editCapsuleId').value = capsule._id;
-//             document.getElementById('editTitle').value = capsule.title;
-//             document.getElementById('editMessage').value = capsule.message;
-//             document.getElementById('editUnlockDate').value = capsule.unlockDate.split('T')[0];
-//             document.getElementById('editMood').value = capsule.mood;
-//             document.getElementById('editTags').value = capsule.tags ? capsule.tags.join(', ') : '';
-//             document.getElementById('editImageUrl').value = capsule.imageUrl || '';
-//             document.getElementById('editModal').style.display = 'flex';
-//         }
-//     } catch (error) {
-//         alert('Failed to load capsule: ' + error.message);
-//     }
-// }
 
-// 2. Update Capsule
-
-// Edit Capsule - YEH FUNCTION ADD KARO
-// async function editCapsule(capsuleId) {
-//     try {
-//         const response = await api.get(`/capsules/${capsuleId}`);
-        
-//         // Extra check - agar unlocked hai toh edit mat karo
-//         if (response.data.status === 'unlocked') {
-//             alert('❌ Cannot edit an unlocked capsule! The time has passed.');
-//             return;
-//         }
-        
-//         // Agar locked hai toh edit form show karo
-//         const capsule = response.data;
-//         document.getElementById('editCapsuleId').value = capsule._id;
-//         document.getElementById('editTitle').value = capsule.title;
-//         document.getElementById('editMessage').value = capsule.message;
-//         document.getElementById('editUnlockDate').value = capsule.unlockDate.split('T')[0];
-//         document.getElementById('editMood').value = capsule.mood;
-//         document.getElementById('editTags').value = capsule.tags ? capsule.tags.join(', ') : '';
-//         document.getElementById('editImageUrl').value = capsule.imageUrl || '';
-//         document.getElementById('editModal').style.display = 'flex';
-        
-//     } catch (error) {
-//         alert('Failed to load capsule: ' + error.message);
-//     }
-// }
-
-// // Update Capsule - YEH FUNCTION ADD KARO
-// async function updateCapsule() {
-//     const capsuleId = document.getElementById('editCapsuleId').value;
-//     const title = document.getElementById('editTitle').value;
-//     const message = document.getElementById('editMessage').value;
-//     const unlockDate = document.getElementById('editUnlockDate').value;
-//     const mood = document.getElementById('editMood').value;
-//     const tags = document.getElementById('editTags').value;
-//     const imageUrl = document.getElementById('editImageUrl').value;
-    
-//     const body = { title, message, unlockDate, mood };
-//     if (tags) body.tags = tags.split(',').map(t => t.trim());
-//     if (imageUrl) body.image = imageUrl;
-    
-//     try {
-//         const response = await api.put(`/capsules/${capsuleId}`, body);
-        
-//         if (response.success) {
-//             alert('✅ Capsule updated successfully!');
-//             closeEditModal();
-//             loadCapsules();
-//             loadDashboard();
-//         } else {
-//             alert(response.message || 'Update failed');
-//         }
-//     } catch (error) {
-//         alert('Update failed: ' + error.message);
-//     }
-// }
-
-// Edit Capsule - API call wala (Pehle wala)
-// Edit Capsule - API call wala
-// async function editCapsule(capsuleId) {
-//     try {
-//         const response = await api.get(`/capsules/${capsuleId}`);
-        
-//         const capsule = response.data;
-        
-//         if (capsule.isUnlocked) {
-//             alert('❌ Cannot edit an unlocked capsule!');
-//             return;
-//         }
-        
-//         document.getElementById('editCapsuleId').value = capsule._id;
-//         document.getElementById('editTitle').value = capsule.title;
-//         document.getElementById('editMessage').value = capsule.message;
-//         document.getElementById('editUnlockDate').value = capsule.unlockDate.split('T')[0];
-//         document.getElementById('editMood').value = capsule.mood;
-//         document.getElementById('editTags').value = capsule.tags ? capsule.tags.join(', ') : '';
-//         document.getElementById('editImageUrl').value = capsule.imageUrl || '';
-//         document.getElementById('editModal').style.display = 'flex';
-        
-//     } catch (error) {
-//         alert('Failed to load capsule: ' + error.message);
-//     }
-// }
-// async function updateCapsule() {
-//     const capsuleId = document.getElementById('editCapsuleId').value;
-//     const title = document.getElementById('editTitle').value;
-//     const message = document.getElementById('editMessage').value;
-//     const unlockDate = document.getElementById('editUnlockDate').value;
-//     const mood = document.getElementById('editMood').value;
-//     const tags = document.getElementById('editTags').value;
-//     const imageUrl = document.getElementById('editImageUrl').value;
-    
-//     const body = { title, message, unlockDate, mood };
-//     if (tags) body.tags = tags.split(',').map(t => t.trim());
-//     if (imageUrl) body.image = imageUrl;
-    
-//     try {
-//         const response = await api.put(`/capsules/${capsuleId}`, body);
-        
-//         if (response.success) {
-//             alert('✅ Capsule updated successfully!');
-//             closeEditModal();
-//             loadCapsules();
-//             loadDashboard();
-//         }
-//     } catch (error) {
-//         alert('Update failed: ' + error.message);
-//     }
-// }
 
 // ==================== DELETE CAPSULE ====================
 async function deleteCapsule(capsuleId) {
@@ -433,58 +298,6 @@ document.getElementById('loginForm')?.addEventListener('submit', async (e) => {
         submitBtn.textContent = 'Login';
     }
 });
-// // 3. Delete Capsule
-// async function deleteCapsule(capsuleId) {
-//     const confirmed = confirm('⚠️ Move this capsule to trash? You can restore within 30 days.');
-//     if (!confirmed) return;
-    
-//     try {
-//         const response = await api.delete(`/capsules/${capsuleId}`);
-//         if (response.success) {
-//             alert('🗑️ Capsule moved to trash!');
-//             loadCapsules();
-//             loadDashboard();
-//         }
-//     } catch (error) {
-//         alert('Delete failed: ' + error.message);
-//     }
-// }
-
-
-
-
-// function closeEditModal() {
-//     document.getElementById('editModal').style.display = 'none';
-// }
-
-// // Login
-// document.getElementById('loginForm')?.addEventListener('submit', async (e) => {
-//     e.preventDefault();
-    
-//     const email = document.getElementById('loginEmail').value;
-//     const password = document.getElementById('loginPassword').value;
-    
-//     const submitBtn = e.target.querySelector('button[type="submit"]');
-//     submitBtn.disabled = true;
-//     submitBtn.textContent = 'Logging in...';
-    
-//     try {
-//         const response = await api.post('/auth/login', { email, password });
-        
-//         if (response.success) {
-//             setAuth(response.data.token, response.data);
-//             alert('✅ Login successful!');
-//             updateUI();
-//         } else {
-//             alert(response.message || 'Login failed');
-//         }
-//     } catch (error) {
-//         alert(error.message || 'Invalid email or password');
-//     } finally {
-//         submitBtn.disabled = false;
-//         submitBtn.textContent = 'Login';
-//     }
-// });
 
 
 // Logout
@@ -594,7 +407,6 @@ async function loadCapsules() {
         const response = await api.get('/capsules', { params });
         
         if (response.success && response.data.length > 0) {
-            // My Vault mein capsule display karte waqt
 container.innerHTML = response.data.map(capsule => `
     <div class="capsule-card">
         ${capsule.imageUrl ? `<img src="${capsule.imageUrl}" alt="${capsule.title}">` : ''}
@@ -618,32 +430,7 @@ container.innerHTML = response.data.map(capsule => `
         container.innerHTML = '<div style="text-align:center; padding:40px; color:red;">❌ Failed to load capsules. Make sure server is running.</div>';
     }
 }
-//             container.innerHTML = response.data.map(capsule => `
-//     <div class="capsule-card">
-//         ${capsule.imageUrl ? `<img src="${capsule.imageUrl}" alt="${capsule.title}" onerror="this.style.display='none'">` : ''}
-//         <div class="capsule-mood">${getMoodEmoji(capsule.mood)}</div>
-//         <h3>${escapeHtml(capsule.title)}</h3>
-//         <p>${capsule.message ? escapeHtml(capsule.message.substring(0, 100)) + (capsule.message.length > 100 ? '...' : '') : ''}</p>
-//         <div class="capsule-date">📅 ${capsule.status === 'locked' ? 'Unlocks' : 'Unlocked'}: ${new Date(capsule.unlockDate).toLocaleDateString()}</div>
-//         ${capsule.tags && capsule.tags.length ? `<div class="tags">${capsule.tags.map(t => `#${escapeHtml(t)}`).join(' ')}</div>` : ''}
-//         <span class="badge ${capsule.status}">${capsule.status === 'locked' ? '🔒 Locked' : '🔓 Unlocked'}</span>
-//         <div class="capsule-actions">
-//             <button class="btn-edit" onclick="editCapsule('${capsule._id}')">✏️ Edit</button>
-//             <button class="btn-delete" onclick="deleteCapsule('${capsule._id}')">🗑️ Delete</button>
-//         </div>
-//     </div>
-// `).join('');
-            // container.innerHTML = response.data.map(capsule => `
-            //     <div class="capsule-card">
-            //         ${capsule.imageUrl ? `<img src="${capsule.imageUrl}" alt="${capsule.title}" onerror="this.style.display='none'">` : ''}
-            //         <div class="capsule-mood">${getMoodEmoji(capsule.mood)}</div>
-            //         <h3>${escapeHtml(capsule.title)}</h3>
-            //         <p>${capsule.message ? escapeHtml(capsule.message.substring(0, 100)) + (capsule.message.length > 100 ? '...' : '') : ''}</p>
-            //         <div class="capsule-date">📅 ${capsule.status === 'locked' ? 'Unlocks' : 'Unlocked'}: ${new Date(capsule.unlockDate).toLocaleDateString()}</div>
-            //         ${capsule.tags && capsule.tags.length ? `<div class="tags">${capsule.tags.map(t => `#${escapeHtml(t)}`).join(' ')}</div>` : ''}
-            //         <span class="badge ${capsule.status}">${capsule.status === 'locked' ? '🔒 Locked' : '🔓 Unlocked'}</span>
-            //     </div>
-            // `).join('');
+
         
 
 // ==================== PROFILE API ====================
