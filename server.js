@@ -76,15 +76,15 @@ app.get(/^\/(?!api).*/, (req, res) => {
 //   console.log(`🔗 API available at: http://localhost:${PORT}/api`);
 // });
 
-// server.js ka aakhri hissa
+
 const PORT = process.env.PORT || 5000;
 
-// Sirf local machine par server chalayein
+
 if (process.env.NODE_ENV !== 'production') {
     app.listen(PORT, () => {
         console.log(`🚀 Server running on port ${PORT}`);
     });
 }
 
-// Vercel ke liye export lazmi hai
+
 module.exports = app;
